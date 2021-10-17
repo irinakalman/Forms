@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #fff;
+            color: #333;
+            font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+            padding: 1em;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        form {
+            font: 1em sans-serif;
+            max-width: 320px;
+        }
+
+        p>label {
+            display: block;
+        }
+
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            border: 1px solid #333;
+            box-sizing: border-box;
+        }
+
+        input:valid,
+        textarea:valid {
+            border: 3px solid green;
+        }
+
+        input:invalid {
+            box-shadow: 0 0 5px 1px red;
+        }
+
+        input:focus:invalid {
+            box-shadow: none;
+        }
+
+        /* The message box is shown when the user clicks on the password field */
+        #message, #message2 {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 6px;
+            margin-top: 10px;
+        }
+
+        #message p, #message2 p {
+            padding: 1px 25px;
+            font-size: 13px;
+        }
+        h3{
+            font-size: 13px;
+        }
+
+        .validGreen {
+            color: green !important;
+        }
+        .invalidRed {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <h2>Enter your information</h2>
+        <ul>
+            <li>
+                <label for="country">Country:</label>
+                <!-- <select id="Country"  name="Country">
+                    <option value="000" selected="selected">[choose yours]</option>
+                    <option value="008">Albania</option>
+                    <option value="012">Algeria</option>
+                    <option value="016">American Samoa</option>
+                    <option value="020">Andorra</option>
+                    <option value="024">Angola</option>
+                    <option value="660">Anguilla</option>
+                    <option value="010">Antarctica</option>
+                    <option value="028">Antigua And Barbuda</option>
+                    <option value="032">Argentina</option>
+                    <option value="051">Armenia</option>
+                    <option value="533">Aruba</option>
+                </select> -->
+                <input type="text" name="country" id="country" required>
+            </li>
+            <li>
+                <label for="email">Email address:</label>
+                <input type="email" name="email" id="email" minlength="8" required>
+                <span class="error" aria-live="polite"></span>
+            </li>
+            <li>
+                <label for="zipcode">Zip Code:</label>
+                <input type="text" name="zipcode" id="zipcode" minlength="5" pattern="\d{5}$|^\d{5}-\d{4}$" required>
+                <span class="error" aria-live="polite"></span>
+            </li>
+            <li>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+            </li>
+            <li>
+                <label for="password">Password Confirmation:</label>
+                <input type="password" name="repassword" id="passwordConfirm" required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+            </li>
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalidRed">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalidRed">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalidRed">A <b>number</b></p>
+                <p id="length" class="invalidRed">Minimum <b>8 characters</b></p>
+            </div>
+            <div id="message2">
+                <p id="mismatch" class="invalidRed">Your passwords do not match</p>
+            </div>
+            <li>
+                <button>Submit</button>
+            </li>
+        </ul>
+    </form>
+    <script src="index.js"></script>
+</body>
+
+</html>
